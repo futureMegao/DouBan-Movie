@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 
+const hotBroadcast = r => require.ensure([], () => r(require('@/components/hotBroadcast.vue')), 'hotBroadcast');
+
+const search = r => require.ensure([], () => r(require('@/components/home/search.vue')), 'search');
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: HelloWorld
+      name: 'hotBroadcast',
+      component: hotBroadcast,
+      children:[
+          {path:'search',component:search,name:'搜索'}
+      ]
     }
   ]
 })

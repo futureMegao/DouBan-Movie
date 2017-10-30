@@ -20,10 +20,17 @@ exports.cssLoaders = function (options) {
       sourceMap: options.sourceMap
     }
   }
+  //1rem相当于75px，  这里手动把rem写进来
+  const px2remLoader = {
+      loader: 'px2rem-loader',
+      options: {
+          remUnit: 75
+      }
+  }
 
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
-    const loaders = [cssLoader]
+    const loaders = [cssLoader,px2remLoader]
     if (loader) {
       loaders.push({
         loader: loader + '-loader',
