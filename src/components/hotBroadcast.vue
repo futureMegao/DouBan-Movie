@@ -35,7 +35,7 @@ export default {
       }),
       search(){
           this.$router.push({path:'/search'});
-          console.log(this.hotBroadcast)
+          this.getHotBroadcast('张艺谋');
       },
       myHome(){
           this.$router.push({path:'/myHome'})

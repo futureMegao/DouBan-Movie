@@ -12,15 +12,14 @@ export default {
         //     .catch(function (error) {
         //         console.log(error);
         //     });
-        // console.log(context,payload)
-        // fetchJsonp('https://api.douban.com/v2/movie/in_theaters/search?q=' + payload.keyword, {
-        //     jsonpCallback: 'callback',
-        //     jsonpCallbackFunction:'gao'
-        // }).then( response => {
-        //     return response.json();
-        // } ).then( data => {
-        //     context.commit(types.GET_HOT_BROADCAST, data)
-        // } )
-        context.commit(types.GET_HOT_BROADCAST,payload);
+        fetchJsonp('https://api.douban.com/v2/movie/search?q='+ payload, {
+            jsonpCallback: 'callback',
+            jsonpCallbackFunction:'gao'
+        }).then( response => {
+            return response.json();
+        } ).then( data => {
+            context.commit(types.GET_HOT_BROADCAST, data)
+        } )
+        // context.commit(types.GET_HOT_BROADCAST,payload);
     }
 }
