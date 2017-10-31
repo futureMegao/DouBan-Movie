@@ -16,6 +16,7 @@
 </template>
 
 <script>
+    import {mapState,mapActions} from 'vuex'
 export default {
   name: 'hotBroadcast',
   data () {
@@ -23,9 +24,18 @@ export default {
         selected:10
     }
   },
+  computed:{
+      ...mapState({
+          hotBroadcast : state => state.root.hotBroadcast
+      })
+  },
   methods:{
+      ...mapActions({
+          getHotBroadcast : 'getHotBroadcast'
+      }),
       search(){
-          this.$router.push({path:'/search'})
+          this.$router.push({path:'/search'});
+          console.log(this.hotBroadcast)
       },
       myHome(){
           this.$router.push({path:'/myHome'})
