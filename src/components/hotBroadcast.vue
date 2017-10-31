@@ -8,9 +8,9 @@
     </div>
     <div class="foot-nav">
 
-      <mt-button type="default" @click="search">搜索</mt-button>
-      <mt-button type="primary">热播</mt-button>
-      <mt-button type="danger" size="large">danger</mt-button>
+      <mt-button type="default" @click="hotBroadcasts" style="width:80px">热播</mt-button>
+      <mt-button type="primary" @click="search" style="width:80px">搜索</mt-button>
+      <mt-button type="danger" @click="myHome" style="width:80px">我的</mt-button>
     </div>
   </div>
 </template>
@@ -26,6 +26,12 @@ export default {
   methods:{
       search(){
           this.$router.push({path:'/search'})
+      },
+      myHome(){
+          this.$router.push({path:'/myHome'})
+      },
+      hotBroadcasts(){
+          this.$router.push({path:'/hotBroadcasts'})
       }
   }
 }
