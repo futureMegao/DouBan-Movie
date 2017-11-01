@@ -1,12 +1,19 @@
 <template>
     <div>
-        <h2 class="hot-Broadcast-header">影院热映</h2>
+        <div class="hot-Broadcast-header">
+            <h2 class="hot-Broadcast-header-left">影院热映</h2>
+            <div class="hot-Broadcast-header-right">更多</div>
+        </div>
         <div class="hot-Broadcast-swipe">
-            <!--<div class="red" v-for="hotBroadcast in hotBroadcast[0]">{{hotBroadcast.title}}</div>-->
             <mt-swipe :auto="4000">
-                <mt-swipe-item v-for="hotBroadcast in hotBroadcast[0]"><div class="red">{{hotBroadcast.title}}</div></mt-swipe-item>
-                <!--<mt-swipe-item><div class="blue">我是2</div></mt-swipe-item>-->
-                <!--<mt-swipe-item><div class="yellow">我是3</div></mt-swipe-item>-->
+                <mt-swipe-item v-for="hotBroadcast in hotBroadcast[0]">
+                    <div style="height:100px">
+                        <a :href="hotBroadcast.alt">
+                            <!--<img :src="hotBroadcast.images.small"/>-->
+                            <span>{{hotBroadcast.title}}</span>
+                        </a>
+                    </div>
+                </mt-swipe-item>
             </mt-swipe>
         </div>
     </div>
@@ -18,7 +25,7 @@
         name: 'hotBroadcasts',
         data () {
             return {
-
+                a:''
             }
         },
         computed:{
@@ -26,6 +33,10 @@
                 hotBroadcast : state => state.root.hotBroadcast
             })
         },
+        beforeMount(){
+            //只拿数据的前四条来渲染轮播图
+             this.a=this.hotBroadcast[0];
+        }
     }
 </script>
 
@@ -35,12 +46,22 @@
         margin:0;
     }
     .hot-Broadcast-header {
+        position:relative;
+    }
+    .hot-Broadcast-header-right {
+        position:absolute;
+        right:20px;
+        top:0;
+        font-size:32px;
+        line-height:45px;
+        color:green;
+    }
+    .hot-Broadcast-header-left {
         text-indent:15px;
-        color:red;
-        font-size:45px;
+        color:#000;
+        font-size:42px;
         line-height:36px;
         padding-bottom:20px;
-        border-bottom:1px solid #000;
     }
     .red {
         height:50px;

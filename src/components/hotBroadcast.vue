@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <div style="height:20px;">
-      <mt-header fixed title="豆瓣视频"></mt-header>
+    <div style="height:50px;">
+      <mt-header fixed title="豆瓣视频" style="height:50px;font-size:30px;"></mt-header>
     </div>
     <div>
       <router-view/>
