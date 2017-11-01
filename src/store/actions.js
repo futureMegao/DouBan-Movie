@@ -12,13 +12,13 @@ export default {
         //     .catch(function (error) {
         //         console.log(error);
         //     });
-        fetchJsonp('https://api.douban.com/v2/movie/search?q='+ payload, {
+        fetchJsonp('https://api.douban.com/v2/movie/in_theaters', {
             jsonpCallback: 'callback',
             jsonpCallbackFunction:'gao'
         }).then( response => {
             return response.json();
         } ).then( data => {
-            context.commit(types.GET_HOT_BROADCAST, data)
+            context.commit(types.GET_HOT_BROADCAST, data.subjects)
         } )
         // context.commit(types.GET_HOT_BROADCAST,payload);
     }

@@ -35,7 +35,7 @@ export default {
       }),
       search(){
           this.$router.push({path:'/search'});
-          this.getHotBroadcast('张艺谋');
+
       },
       myHome(){
           this.$router.push({path:'/myHome'})
@@ -43,6 +43,9 @@ export default {
       hotBroadcasts(){
           this.$router.push({path:'/hotBroadcasts'})
       }
+  },
+  created(){
+      this.getHotBroadcast();
   }
 }
 </script>
