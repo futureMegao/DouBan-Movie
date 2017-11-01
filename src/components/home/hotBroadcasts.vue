@@ -5,17 +5,40 @@
             <div class="hot-Broadcast-header-right">更多</div>
         </div>
         <div class="hot-Broadcast-swipe">
-            <mt-swipe :auto="4000">
-                <mt-swipe-item v-for="hotBroadcast in hotBroadcast[0]">
-                    <div style="height:100px">
+            <mt-swipe :auto="5000" style="height:220px;">
+                <span>豆瓣的原因，图片获取不到，只有数据</span>
+                <mt-swipe-item v-for="hotBroadcast in a">
+                    <div>
                         <a :href="hotBroadcast.alt">
-                            <!--<img :src="hotBroadcast.images.small"/>-->
-                            <span>{{hotBroadcast.title}}</span>
+                            <img src="../../img/A0.jpg" alt="">
+                            <div style="text-align:center">
+                                <span>{{hotBroadcast.title}}<em style="color:red">({{hotBroadcast.rating.average}})</em></span>
+                            </div>
                         </a>
                     </div>
                 </mt-swipe-item>
             </mt-swipe>
         </div>
+        <div class="hot-Broadcast-header">
+        <h2 class="hot-Broadcast-header-left">新片速递</h2>
+        <div class="hot-Broadcast-header-right">更多</div>
+    </div>
+        <div class="hot-Broadcast-swipe">
+            <mt-swipe :auto="3000" style="height:220px;">
+                <span>豆瓣的原因，图片获取不到，只有数据</span>
+                <mt-swipe-item v-for="hotBroadcast in b">
+                    <div>
+                        <a :href="hotBroadcast.alt">
+                            <img src="../../img/0.jpg" alt="">
+                            <div style="text-align:center">
+                                <span>{{hotBroadcast.title}}<em style="color:red">({{hotBroadcast.rating.average}})</em></span>
+                            </div>
+                        </a>
+                    </div>
+                </mt-swipe-item>
+            </mt-swipe>
+        </div>
+
     </div>
 </template>
 
@@ -25,17 +48,27 @@
         name: 'hotBroadcasts',
         data () {
             return {
-                a:''
+
             }
         },
         computed:{
             ...mapState({
                 hotBroadcast : state => state.root.hotBroadcast
-            })
+            }),
+            a(){
+                if(this.hotBroadcast!=''){
+                    return this.hotBroadcast[0].slice(0,4);
+                }
+            },
+            b(){
+                if(this.hotBroadcast!=''){
+                    return this.hotBroadcast[0].slice(4,8);
+                }
+            }
         },
-        beforeMount(){
+        created(){
             //只拿数据的前四条来渲染轮播图
-             this.a=this.hotBroadcast[0];
+             this.a=this.hotBroadcast[0].slice(0,4);
         }
     }
 </script>
@@ -67,7 +100,13 @@
         height:50px;
         background-color:red;
     }
-    .hot-Broadcast-swipe {
-        height:100px;
+    .hot-Broadcast-swipe img {
+        width:100%;
+        height:330px;
+    }
+    .hot-Broadcast-swipe a {
+        font-size:35px;
+        text-decoration:none;
+        color:#000;
     }
 </style>
